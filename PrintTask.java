@@ -1,13 +1,15 @@
-package in.qadir.multithreading.runnable;
+package in.qadir.exucutor.singleThread;
 
-public class PrintTask implements Runnable
-{
+public class PrintTask implements Runnable {
     @Override
-    public void run()
-    {
-        for (int i = 1; i <= 1000; i++)
-        {
-            System.out.printf("%d%c ", i,targetChar);
+    public void run() {
+        for (int i = 1; i <= 100; i++) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.printf("%d%c ", i, targetChar);
         }
         System.out.printf("\n %s\n%c task is complete\n", Thread.currentThread().getName(), targetChar);
     }
@@ -17,5 +19,4 @@ public class PrintTask implements Runnable
     public PrintTask(char targetChar) {
         this.targetChar = targetChar;
     }
-
 }
